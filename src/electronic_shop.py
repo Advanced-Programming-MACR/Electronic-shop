@@ -62,7 +62,11 @@ if __name__ == "__main__":
                     mouse = int(input(MENU_MOUS))
                     while mouse != 3:
                         if mouse in (1, 2):
-                            print("Reemplazar esto")
+                            quantity = int(input("How many products do you want?"))
+                            while quantity < 0:
+                                if quantity != 0:
+                                    print("The product was added to the shopping cart")
+                                    ShpCrt.add_item(mouse,quantity)
                             break
                         else:
                             print("Incorrect, please choose a valid option")
@@ -70,7 +74,7 @@ if __name__ == "__main__":
                         mouse = int(input(MENU_MOUS))
 
                 elif option2 == 2:
-                    
+
                     keyboard = int(input(MENU_KEY))
                     while keyboard != 3:
                         if keyboard in (1, 2):

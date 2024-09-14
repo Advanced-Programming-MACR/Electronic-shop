@@ -26,14 +26,16 @@ class AbstractShoppingCart(ABC):
     """This abstract class is for the shopping cart"""
 
     @abstractmethod
-    def add_item(self, a: str) -> None:
+    def add_item(self, a: int, b: int, c:int) -> None:
         """This is an abstract method for adding an item.
 
         This abstract method, adds an item to a list, for knowing the items
         the person has added to the shoppgin cart.
 
         Args:
-            a (str): The item that will be add.
+            a (int): The category of the item.
+            b (int): The item that will be add.
+            c (int): Quantity of the product.
 
         Returns:
             This method doesn`t return anything.
@@ -75,20 +77,97 @@ class ShoppingCart(AbstractShoppingCart):
 
     def __init__(self) -> None:
         self.__products = [None]
+        self.__quantiy = [None]
 
-    def add_item(self, a: str) -> None:
+    def add_item(self, a: int, b: int, c:int) -> None:
         """This method adds an item to products list.
 
         This method adds the "a" item to the list of the shopping cart.
 
         Args:
-            a(int): the item that will be add.
+            a (int): The category of the item.
+            b (int): The item that will be add.
+            c (int): Quantity of the product.
 
         Returns:
             This method doesn`t returns anything.
         """
-        a = a.capitalize
-        self.__products.append(a)
+
+        if_list = 0
+        if a == 1:
+            if b== 1:
+
+                for i in range(0,self.list_length):
+                    if "Logitech g203" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Logitech g203")
+                    self.__quantiy.append(c)
+     
+            elif b== 2:
+                for i in range(0,self.list_length):
+                    if "Genius Dx-101" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Genius Dx-101")
+                    self.__quantiy.append(c)
+
+        elif a==2:
+            if b== 1:
+                for i in range(0,self.list_length):
+                    if "Redragon kumara k552" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Redragon kumara k552")
+                    self.__quantiy.append(c)
+
+            elif b== 2:
+                for i in range(0,self.list_length):
+                    if "Logitech mx keys" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Logitech mx keys")
+                    self.__quantiy.append(c)
+
+        elif a==3:
+            if b== 1:
+                for i in range(0,self.list_length):
+                    if "Logitech mx keys" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Logitech mx keys")
+                    self.__quantiy.append(c)
+                self.__products.append(["iPhone 15",c])
+            elif b== 2:
+                for i in range(0,self.list_length):
+                    if "Logitech mx keys" == self.__products[i]:
+                        num=int(self.__quantiy[i]+c)
+                        self.__quantiy[i]=num
+                        if_list= 1
+
+                if if_list==0:
+                    self.__products.append("Logitech mx keys")
+                    self.__quantiy.append(c)
+                self.__products.append(["Samsung galaxy s23",c])
+        elif a==4:
+            
+            self.__products.append(["iMac M3",c])
+
 
     def deletle_item(self, a: str) -> None:
         """This method delete an item of the products list.
@@ -119,5 +198,5 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             An integer number with the lenght of the list.
         """
-                
+
         return self.__products.__len__
