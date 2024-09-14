@@ -26,7 +26,7 @@ class AbstractShoppingCart(ABC):
     """This abstract class is for the shopping cart"""
 
     @abstractmethod
-    def add_item(self, a: int, b: int, c:int) -> None:
+    def add_item(self, a: int, b: int, c: int) -> None:
         """This is an abstract method for adding an item.
 
         This abstract method, adds an item to a list, for knowing the items
@@ -42,32 +42,47 @@ class AbstractShoppingCart(ABC):
         """
 
     @abstractmethod
-    def deletle_item(self, a: str) -> None:
+    def deletle_item(self, a: int) -> None:
         """This is an abstract method for deleting an item.
 
         This abstract method, deletes an item to a list, just if the person decides
         to not buying something.
 
         Args:
-            a (str): The item that will be delete.
+            a (int): The item that will be delete.
 
         Returns:
             This method doesn`t return anything.
         """
 
     @abstractmethod
-    def send_item(self, a: str) -> str:
+    def show_item(self, a: str) -> str:
         """This abstract method sends the info of an item.
 
-        This abstract method is for sending the item that is requiered.
+        This abstract method is for one of the item from shopping cart list.
 
         Args:
-            a(int): the id of the item.
+            a(int): the number of the product on the list.
 
         Returns:
             The element on the list.
         """
 
+    @abstractmethod
+    def checkout(self, a:str, b: str, c:str, d:str) -> None:
+        """This abstract method do the checkout.
+
+        This abstract method is for create or modify a file with all checkout data.
+
+        Args:
+            a(str): person`s name.
+            b(str): person`s email.
+            c(str): person`s location.
+            d(str): peron`s cerdit or debit card.
+
+        Returns:
+            The element on the list.
+        """
 
 # ============================= Concrete Shoping Cart  ==================================#
 
@@ -76,10 +91,11 @@ class ShoppingCart(AbstractShoppingCart):
     """This is the concrete class of the Shopping Cart"""
 
     def __init__(self) -> None:
-        self.__products = [None]
-        self.__quantiy = [None]
+        self.__products = []
+        self.__quantiy = []
+        self.__prices = []
 
-    def add_item(self, a: int, b: int, c:int) -> None:
+    def add_item(self, a: int, b: int, c: int) -> None:
         """This method adds an item to products list.
 
         This method adds the "a" item to the list of the shopping cart.
@@ -92,107 +108,175 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             This method doesn`t returns anything.
         """
-
         if_list = 0
         if a == 1:
-            if b== 1:
+            if b == 1:
 
-                for i in range(0,self.list_length):
+                for i in range(self.list_length()):
                     if "Logitech g203" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
 
-                if if_list==0:
+                if if_list == 0:
                     self.__products.append("Logitech g203")
                     self.__quantiy.append(c)
-     
-            elif b== 2:
-                for i in range(0,self.list_length):
-                    if "Genius Dx-101" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                    self.__prices.append(100000)
 
-                if if_list==0:
+            elif b == 2:
+                for i in range(self.list_length()):
+                    if "Genius Dx-101" == self.__products[i]:
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
+
+                if if_list == 0:
                     self.__products.append("Genius Dx-101")
                     self.__quantiy.append(c)
+                    self.__prices.append(20000)
 
-        elif a==2:
-            if b== 1:
-                for i in range(0,self.list_length):
+
+        elif a == 2:
+            if b == 1:
+                for i in range(self.list_length()):
                     if "Redragon kumara k552" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
 
-                if if_list==0:
+                if if_list == 0:
                     self.__products.append("Redragon kumara k552")
                     self.__quantiy.append(c)
+                    self.__prices.append(200000)
+                    
 
-            elif b== 2:
-                for i in range(0,self.list_length):
+            elif b == 2:
+                for i in range(self.list_length()):
                     if "Logitech mx keys" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
 
-                if if_list==0:
+                if if_list == 0:
                     self.__products.append("Logitech mx keys")
                     self.__quantiy.append(c)
+                    self.__prices.append(300000)
 
-        elif a==3:
-            if b== 1:
-                for i in range(0,self.list_length):
+        elif a == 3:
+            if b == 1:
+                for i in range(self.list_length()):
                     if "iPhone 15" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
 
-                if if_list==0:
+                if if_list == 0:
                     self.__products.append("iPhone 15")
                     self.__quantiy.append(c)
+                    self.__prices.append(5600000)
 
-            elif b== 2:
-                for i in range(0,self.list_length):
+            elif b == 2:
+                for i in range(self.list_length()):
                     if "Samsung galaxy s23" == self.__products[i]:
-                        num=int(self.__quantiy[i]+c)
-                        self.__quantiy[i]=num
-                        if_list= 1
+                        num = int(self.__quantiy[i] + c)
+                        self.__quantiy[i] = num
+                        if_list = 1
 
-                if if_list==0:
+                if if_list == 0:
                     self.__products.append("Samsung galaxy s23")
                     self.__quantiy.append(c)
-                
-        elif a==4:
-            for i in range(0,self.list_length):
-                if "iMac M3" == self.__products[i]:
-                    num=int(self.__quantiy[i]+c)
-                    self.__quantiy[i]=num
-                    if_list= 1
+                    self.__prices.append(3000000)
 
-                if if_list==0:
+        elif a == 4:
+            for i in range(self.list_length()):
+                if "iMac M3" == self.__products[i]:
+                    num = int(self.__quantiy[i] + c)
+                    self.__quantiy[i] = num
+                    if_list = 1
+
+                if if_list == 0:
                     self.__products.append("iMac M3")
                     self.__quantiy.append(c)
-
+                    self.__prices.append(8900000)
 
     def deletle_item(self, a: str) -> None:
-        """This method delete an item of the products list.
+        """This is a method for deleting an item.
 
-        This method delete the "a" item of the list of the shopping cart.
+        This abstract method, deletes an item to a list, just if the person decides
+        to not buying something.
 
         Args:
-            a(int): the item that will be delete.
+            a (int): The item that will be delete.
+
+        Returns:
+            This method doesn`t return anything.
+        """
+        self.__products.pop(a)
+        self.__quantiy.pop(a)
+
+
+
+    def show_item(self, a: int) -> str:
+        """This abstract method sends the info of an item.
+
+        This abstract method is for one of the item from shopping cart list.
+
+        Args:
+            a(int): the number of the product on the list.
+
+        Returns:
+            The element on the list.
+        """
+        return (f"{self.__products[a]} --- {self.__quantiy[a]}")
+
+    def checkout(self, a:str, b: str, c:str, d:str) -> None:
+        """This is a method is for doing the checkout.
+
+        This abstract method is for create or modify a file with all checkout data.
+
+        Args:
+            a(str): person`s name.
+            b(str): person`s email.
+            c(str): person`s location.
+            d(str): peron`s cerdit or debit card.
+
+        Returns:
+            The element on the list.
+        """
+        with open("Checkout.txt", "a", encoding="utf-8") as file:
+            file.write(f"{a},{b},{c},{d},bought {self.__products} with a total price of: {self.money}")
+
+    def finish(self) -> None:
+        """This method workd when the purchase has finished.
+
+        This method just restart all the lists.
+
+        Args:
+            This method doesn`t have args.
 
         Returns:
             This method doesn`t returns anything.
         """
 
-        a = a.capitalize
-        self.__products.remove(a)
+        self.__products.clear()
+        self.__quantiy.clear()
 
-    def send_item(self, a: str) -> str:
-        pass
+    def money(self) -> int:
+        """This method calculate the total price
+
+        This method sum all the products.
+
+        Args:
+            This method doesn`t have args.
+
+        Returns:
+            An integer number with the total cost of the purchase
+        """
+        total=0
+        for i in range(self.list_length()):
+            total= (self.__prices[i]*self.__quantiy[i])+total
+        return total
+
 
     def list_length(self) -> int:
         """This method shows the lenght of products.
@@ -205,5 +289,4 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             An integer number with the lenght of the list.
         """
-
-        return self.__products.__len__
+        return len(self.__products)
