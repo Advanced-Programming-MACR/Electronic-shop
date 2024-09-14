@@ -144,29 +144,36 @@ class ShoppingCart(AbstractShoppingCart):
         elif a==3:
             if b== 1:
                 for i in range(0,self.list_length):
-                    if "Logitech mx keys" == self.__products[i]:
+                    if "iPhone 15" == self.__products[i]:
                         num=int(self.__quantiy[i]+c)
                         self.__quantiy[i]=num
                         if_list= 1
 
                 if if_list==0:
-                    self.__products.append("Logitech mx keys")
+                    self.__products.append("iPhone 15")
                     self.__quantiy.append(c)
-                self.__products.append(["iPhone 15",c])
+
             elif b== 2:
                 for i in range(0,self.list_length):
-                    if "Logitech mx keys" == self.__products[i]:
+                    if "Samsung galaxy s23" == self.__products[i]:
                         num=int(self.__quantiy[i]+c)
                         self.__quantiy[i]=num
                         if_list= 1
 
                 if if_list==0:
-                    self.__products.append("Logitech mx keys")
+                    self.__products.append("Samsung galaxy s23")
                     self.__quantiy.append(c)
-                self.__products.append(["Samsung galaxy s23",c])
+                
         elif a==4:
-            
-            self.__products.append(["iMac M3",c])
+            for i in range(0,self.list_length):
+                if "iMac M3" == self.__products[i]:
+                    num=int(self.__quantiy[i]+c)
+                    self.__quantiy[i]=num
+                    if_list= 1
+
+                if if_list==0:
+                    self.__products.append("iMac M3")
+                    self.__quantiy.append(c)
 
 
     def deletle_item(self, a: str) -> None:
