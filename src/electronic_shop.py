@@ -23,6 +23,7 @@ from shopping_cart import ShoppingCart
 
 if __name__ == "__main__":
 
+    #This is where all the menus are
     MENU1 = """Please choose an option:
     \t1. See device categories.
     \t2. See shopping cart.
@@ -34,20 +35,26 @@ if __name__ == "__main__":
     \t4. PC.
     \t5. Return.\n"""
 
-    MENU_MOUS = """\t1. Logitech g203
-    \t2. Genius Dx-101
+    MENU_MOUS = """\t1. Logitech g203 ($100.000)
+    \t2. Genius Dx-101 ($20.000)
     \t3. Return.\n"""
 
-    MENU_KEY = """\t1. Redragon kumara k552.
-    \t2. Logitech mx keys.
+    MENU_KEY = """\t1. Redragon kumara k552. ($200.000)
+    \t2. Logitech mx keys. ($300.000)
     \t3. Return.\n"""
 
-    MENU_PHO = """\t1. iPhone 15.
-    \t2. Samsung galaxy s23.
+    MENU_PHO = """\t1. iPhone 15. ($5.600.000)
+    \t2. Samsung galaxy s23. ($3.000.000)
     \t3. Return.\n"""
 
-    MENU_PC = """\t1. iMac M3.
+    MENU_PC = """\t1. iMac M3. ($8.900.000)
     \t2. Return.\n"""
+
+    MENU_SHOPPING = """\t1. See products on the shopping cart.
+    \t2. Deletle an item.
+    \t3. Chekcout.
+    \t4. Return.
+    """
 
     ShpCrt = ShoppingCart()
 
@@ -58,18 +65,24 @@ if __name__ == "__main__":
         if option == 1:
             option2 = int(input(MENU_CAT))
             while option2 != 5:
+
                 if option2 == 1:
+
                     mouse = int(input(MENU_MOUS))
                     while mouse != 3:
                         if mouse in (1, 2):
-                            quantity = int(input("How many products do you want?"))
+                            quantity = int(input("How many products do you want?\n"))
                             while quantity < 0:
-                                if quantity != 0:
-                                    print("The product/s was/were added to the shopping cart")
-                                    ShpCrt.add_item(option2,mouse,quantity)
+                                print("Incorrect, please choose a valid option")
+                                quantity = int(
+                                    input("How many products do you want?\n")
+                                )
+                            if quantity != 0:
+                                print(
+                                    "The product/s was/were added to the shopping cart\n"
+                                )
+                                ShpCrt.add_item(option2, mouse, quantity)
                             break
-                        else:
-                            print("Incorrect, please choose a valid option")
 
                         mouse = int(input(MENU_MOUS))
 
@@ -78,14 +91,18 @@ if __name__ == "__main__":
                     keyboard = int(input(MENU_KEY))
                     while keyboard != 3:
                         if keyboard in (1, 2):
-                            quantity = int(input("How many products do you want?"))
+                            quantity = int(input("How many products do you want?\n"))
                             while quantity < 0:
-                                if quantity != 0:
-                                    print("The product/s was/were added to the shopping cart")
-                                    ShpCrt.add_item(option2,keyboard,quantity)
+                                print("Incorrect, please choose a valid option")
+                                quantity = int(
+                                    input("How many products do you want?\n")
+                                )
+                            if quantity != 0:
+                                print(
+                                    "The product/s was/were added to the shopping cart\n"
+                                )
+                                ShpCrt.add_item(option2, keyboard, quantity)
                             break
-                        else:
-                            print("Incorrect, please choose a valid option")
 
                         keyboard = int(input(MENU_KEY))
 
@@ -94,28 +111,38 @@ if __name__ == "__main__":
                     phone = int(input(MENU_PHO))
                     while phone != 3:
                         if phone in (1, 2):
-                            quantity = int(input("How many products do you want?"))
+                            quantity = int(input("How many products do you want?\n"))
                             while quantity < 0:
-                                if quantity != 0:
-                                    print("The product/s was/were added to the shopping cart")
-                                    ShpCrt.add_item(option2,phone,quantity)
+                                print("Incorrect, please choose a valid option")
+                                quantity = int(
+                                    input("How many products do you want?\n")
+                                )
+                            if quantity != 0:
+                                print(
+                                    "The product/s was/were added to the shopping cart\n"
+                                )
+                                ShpCrt.add_item(option2, phone, quantity)
                             break
-                        else:
-                            print("Incorrect, please choose a valid option")
 
                         phone = int(input(MENU_PHO))
+
                 elif option2 == 4:
+
                     pc = int(input(MENU_PC))
                     while pc != 2:
                         if pc == 1:
-                            quantity = int(input("How many products do you want?"))
+                            quantity = int(input("How many products do you want?\n"))
                             while quantity < 0:
-                                if quantity != 0:
-                                    print("The product/s was/were added to the shopping cart")
-                                    ShpCrt.add_item(option2,pc,quantity)
+                                print("Incorrect, please choose a valid option")
+                                quantity = int(
+                                    input("How many products do you want?\n")
+                                )
+                            if quantity != 0:
+                                print(
+                                    "The product/s was/were added to the shopping cart\n"
+                                )
+                                ShpCrt.add_item(option2, pc, quantity)
                             break
-                        else:
-                            print("Incorrect, please choose a valid option")
 
                         pc = int(input(MENU_PC))
                 else:
@@ -124,11 +151,65 @@ if __name__ == "__main__":
                 option2 = int(input(MENU_CAT))
 
         elif option == 2:
-            if ShpCrt.__sizeof__() == 0:
+
+            if ShpCrt.list_length() == 0:
                 print("You haven`t add anything to your shopping cart.")
             else:
-                for i in range(0, ShpCrt.__sizeof__):
-                    pass
+                option2 = int(input(MENU_SHOPPING))
+                while option2 != 4 or option2 != 3:
+
+                    if option2 == 1:
+
+                        print("\tThe products you`ve add to the shopping cart are:\n")
+                        for i in range(ShpCrt.list_length()):
+                            print(f"\t{ShpCrt.show_item(i)}")
+                            print("\n")
+                        print(f"with a total cost of: {ShpCrt.money()}\n")
+
+                    elif option2 == 2:
+
+                        print("\tChoose the number of a product for delete it:\n")
+                        for i in range(ShpCrt.list_length()):
+
+                            print(f"\t {i+1}. {ShpCrt.show_item(i)}")
+                            print("\n")
+
+                        delete = int(input())
+                        while delete < 1 or delete > (ShpCrt.list_length()):
+                            print("Please, enter a valid number")
+                            delete = int(input())
+
+                        ShpCrt.deletle_item(delete - 1)
+
+                    elif option2 == 3:
+
+                        confirmation = input(
+                            "Are you sure do you want to checkout? write: (YES)"
+                        )
+                        if confirmation == "YES":
+                            confirm_data = 0
+                            while confirm_data == 0:
+                                name = input("Please enter your full name:\n")
+                                email = input("Please enter an email:\n")
+                                location = input("Please enter a location:\n")
+                                credit_card = input(
+                                    "Please enter a credit or debit card\n"
+                                )
+
+                                confirm_data = int(
+                                    input(
+                                        "Are all this personal information correct? (0 for no)\n"
+                                    )
+                                )
+                                ShpCrt.checkout(name, email, location, credit_card)
+                                print("You have been succesfully bought the items")
+                                ShpCrt.finish()
+
+                    if ShpCrt.list_length() == 0 and option2 != 2:
+                        print("There are no more items on the shopping cart.")
+                        break
+
+                    option2 = int(input(MENU_SHOPPING))
 
         else:
             print("Incorrect, please choose a valid option")
