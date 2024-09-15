@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 # =================================== Abstract Shoping Cart  ==================================#
 
@@ -56,7 +57,7 @@ class AbstractShoppingCart(ABC):
         """
 
     @abstractmethod
-    def show_item(self, a: str) -> str:
+    def show_item(self, a: int) -> str:
         """This abstract method sends the info of an item.
 
         This abstract method is for one of the item from shopping cart list.
@@ -69,7 +70,7 @@ class AbstractShoppingCart(ABC):
         """
 
     @abstractmethod
-    def checkout(self, a:str, b: str, c:str, d:str) -> None:
+    def checkout(self, a: str, b: str, c: str, d: str) -> None:
         """This abstract method do the checkout.
 
         This abstract method is for create or modify a file with all checkout data.
@@ -84,6 +85,7 @@ class AbstractShoppingCart(ABC):
             The element on the list.
         """
 
+
 # ============================= Concrete Shoping Cart  ==================================#
 
 
@@ -92,7 +94,7 @@ class ShoppingCart(AbstractShoppingCart):
 
     def __init__(self) -> None:
         self.__products = []
-        self.__quantiy = []
+        self.__quantity = []
         self.__prices = []
 
     def add_item(self, a: int, b: int, c: int) -> None:
@@ -108,95 +110,95 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             This method doesn`t returns anything.
         """
+
+        #All this part of the code is just for adding the product to the lists
         if_list = 0
         if a == 1:
             if b == 1:
 
                 for i in range(self.list_length()):
                     if "Logitech g203" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("Logitech g203")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(100000)
 
             elif b == 2:
                 for i in range(self.list_length()):
                     if "Genius Dx-101" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("Genius Dx-101")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(20000)
-
 
         elif a == 2:
             if b == 1:
                 for i in range(self.list_length()):
                     if "Redragon kumara k552" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("Redragon kumara k552")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(200000)
-                    
 
             elif b == 2:
                 for i in range(self.list_length()):
                     if "Logitech mx keys" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("Logitech mx keys")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(300000)
 
         elif a == 3:
             if b == 1:
                 for i in range(self.list_length()):
                     if "iPhone 15" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("iPhone 15")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(5600000)
 
             elif b == 2:
                 for i in range(self.list_length()):
                     if "Samsung galaxy s23" == self.__products[i]:
-                        num = int(self.__quantiy[i] + c)
-                        self.__quantiy[i] = num
+                        num = int(self.__quantity[i] + c)
+                        self.__quantity[i] = num
                         if_list = 1
 
                 if if_list == 0:
                     self.__products.append("Samsung galaxy s23")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(3000000)
 
         elif a == 4:
             for i in range(self.list_length()):
                 if "iMac M3" == self.__products[i]:
-                    num = int(self.__quantiy[i] + c)
-                    self.__quantiy[i] = num
+                    num = int(self.__quantity[i] + c)
+                    self.__quantity[i] = num
                     if_list = 1
 
                 if if_list == 0:
                     self.__products.append("iMac M3")
-                    self.__quantiy.append(c)
+                    self.__quantity.append(c)
                     self.__prices.append(8900000)
 
     def deletle_item(self, a: str) -> None:
@@ -212,9 +214,8 @@ class ShoppingCart(AbstractShoppingCart):
             This method doesn`t return anything.
         """
         self.__products.pop(a)
-        self.__quantiy.pop(a)
-
-
+        self.__quantity.pop(a)
+        self.__prices.pop(a)
 
     def show_item(self, a: int) -> str:
         """This abstract method sends the info of an item.
@@ -227,9 +228,9 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             The element on the list.
         """
-        return (f"{self.__products[a]} --- {self.__quantiy[a]}")
+        return f"{self.__products[a]} --- {self.__quantity[a]}"
 
-    def checkout(self, a:str, b: str, c:str, d:str) -> None:
+    def checkout(self, a: str, b: str, c: str, d: str) -> None:
         """This is a method is for doing the checkout.
 
         This abstract method is for create or modify a file with all checkout data.
@@ -243,8 +244,11 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             The element on the list.
         """
+        #Just open or create a file and put on it the important information
         with open("Checkout.txt", "a", encoding="utf-8") as file:
-            file.write(f"{a},{b},{c},{d},bought {self.__products} with a total price of: {self.money}")
+            file.write(
+                f"{a},{b},{c},{d},bought {self.__products} with a total price of: {self.money}, time: {datetime.now()}"
+            )
 
     def finish(self) -> None:
         """This method workd when the purchase has finished.
@@ -259,7 +263,8 @@ class ShoppingCart(AbstractShoppingCart):
         """
 
         self.__products.clear()
-        self.__quantiy.clear()
+        self.__quantity.clear()
+        self.__prices.clear()
 
     def money(self) -> int:
         """This method calculate the total price
@@ -272,11 +277,10 @@ class ShoppingCart(AbstractShoppingCart):
         Returns:
             An integer number with the total cost of the purchase
         """
-        total=0
+        total = 0
         for i in range(self.list_length()):
-            total= (self.__prices[i]*self.__quantiy[i])+total
+            total = (self.__prices[i] * self.__quantity[i]) + total
         return total
-
 
     def list_length(self) -> int:
         """This method shows the lenght of products.
